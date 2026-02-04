@@ -48,10 +48,12 @@ Ensure you have the following installed on your machine:
     *This will install Next.js, React, Tailwind CSS, Jest, and other necessary packages.*
 
 4.  **Configure Environment Variables**
-    Create a `.env.local` file in the root directory and add your Gemini API Key:
-    ```env
-    GEMINI_API_KEY=your_api_key_here
-    ```
+    *   **Get your Free API Key**: Visit [Google AI Studio](https://aistudio.google.com/app/apikey) and create a new API key.
+    *   **Create Configuration File**: Create a file named `.env.local` in the root directory.
+    *   **Add Key**: Paste your key into the file like this:
+        ```env
+        GEMINI_API_KEY=pasteyourAPiKey
+        ```
     *Note: The project is configured to use the `gemini-2.5-flash-lite` model.*
 
 ## 🏃‍♂️ How to Run
