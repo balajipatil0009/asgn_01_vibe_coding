@@ -7,7 +7,7 @@ A full-stack Next.js application designed to manage leads efficiently. It fetche
 -   **Fetch Leads**: Targeted retrieval of user data (Name, Email, Phone) from [JSONPlaceholder](https://jsonplaceholder.typicode.com/).
 -   **Notes System**: Add and edit notes for each specific lead.
 -   **Data Persistence**: Custom lightweight JSON-based storage system (`data/notes.json`).
--   **AI Summaries**: Simulated AI integration to generate concise summaries of user notes.
+-   **AI Summaries**:  Integrated with Google's **Gemini 2.5 Flash Lite** model to generate concise summaries of user notes.
 -   **Responsive Design**: Modern UI built with Tailwind CSS.
 
 ## 🛠 Tech Stack
@@ -46,6 +46,13 @@ Ensure you have the following installed on your machine:
     npm install
     ```
     *This will install Next.js, React, Tailwind CSS, Jest, and other necessary packages.*
+
+4.  **Configure Environment Variables**
+    Create a `.env.local` file in the root directory and add your Gemini API Key:
+    ```env
+    GEMINI_API_KEY=your_api_key_here
+    ```
+    *Note: The project is configured to use the `gemini-2.5-flash-lite` model.*
 
 ## 🏃‍♂️ How to Run
 
