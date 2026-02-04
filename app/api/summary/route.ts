@@ -1,4 +1,7 @@
 import { NextResponse } from 'next/server';
+import { GoogleGenerativeAI } from '@google/generative-ai';
+
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 
 export async function POST(request: Request) {
     try {
@@ -12,12 +15,21 @@ export async function POST(request: Request) {
             );
         }
 
-        // Mock AI Summary simulation
-        // In a real app, this would call OpenAI, Anthropic, or Replit AI
-        const summary = `AI Summary: ${note.split(' ').slice(0, 5).join(' ')}... (Key insights extracted)`;
+        const apiKey = process.env.GEMINI_API_KEY;
+        if (!apiKey) {
+            console.error('GEMINI_API_KEY is not defined');
+            return NextResponse.json(
+                { error: 'Server misconfiguration: API Key missing. Please restart the server.' },
+                { status: 500 }
+            );
+        }
 
-        // Simulate delay
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash-lite' });
+        const prompt = `Summarize the following note for a lead management system. Keep it under 20 words: "${note}"`;
+
+        const result = await model.generateContent(prompt);
+        const response = await result.response;
+        const summary = response.text();
 
         return NextResponse.json({ summary });
     } catch (error) {
